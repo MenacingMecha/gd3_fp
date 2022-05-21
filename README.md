@@ -65,3 +65,25 @@ static func sum(a: int, b: int) -> int:
 var input := [1, 2, 3]
 var output := FP.reduce(input, funcref(self, "sum"))  # 6
 ```
+
+## Pipe
+```gdscript
+static func pipe(input: Array, pipe_pairs: Array):
+```
+
+Transforms `input` in order through each `Funcref` pair in `pipe_pairs`.
+
+`pipe_pairs` is expected to be an array of arrays, with a higher-order function `Funcref` followed by an appropriate transformative function `Funcref`.
+
+### Example
+```gdscript
+var input := [1, 2, 3, 4]
+var output = FP.pipe(
+	input,
+	[
+		[funcref(FP, "filter"), funcref(self, "is_even")],
+		[funcref(FP, "map"), funcref(self, "add_one")],
+		[funcref(FP, "reduce"), funcref(self, "sum")]
+	]
+)  # 8
+```

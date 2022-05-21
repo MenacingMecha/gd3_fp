@@ -45,6 +45,8 @@ static func reduce(input: Array, function: FuncRef, base = null):
 	return accumulator
 
 
+# Transforms `input` in order through each `Funcref` pair in `pipe_pairs`.
+# `pipe_pairs` is expected to be an array of arrays, with a higher-order function `Funcref` followed by an appropriate transformative function `Funcref`.
 static func pipe(input: Array, pipe_pairs: Array):
 	var transformed_input = input
 
