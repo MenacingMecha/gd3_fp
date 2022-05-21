@@ -24,6 +24,20 @@ func test_can_reduce():
 	assert_eq(FP.reduce(input, function), expected_output)
 
 
+func test_can_pipe_multiple_funcrefs():
+	var input := [1, 2, 3, 4]
+	var expected_output := 8
+	var output = FP.pipe(
+		input,
+		[
+			[funcref(FP, "filter"), funcref(self, "is_even")],
+			[funcref(FP, "map"), funcref(self, "add_one")],
+			[funcref(FP, "reduce"), funcref(self, "sum")]
+		]
+	)
+	assert_eq(output, expected_output)
+
+
 static func add_one(num: int) -> int:
 	return num + 1
 

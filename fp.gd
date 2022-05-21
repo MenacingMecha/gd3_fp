@@ -43,3 +43,12 @@ static func reduce(input: Array, function: FuncRef, base = null):
 		index += 1
 
 	return accumulator
+
+
+static func pipe(input: Array, pipe_pairs: Array):
+	var transformed_input = input
+
+	for pair in pipe_pairs:
+		transformed_input = pair[0].call_func(transformed_input, pair[1])
+
+	return transformed_input
