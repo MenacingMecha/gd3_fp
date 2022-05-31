@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+          
+      - name: Godot GUT CI
+        uses: ceceppa/godot-gut-ci@0.1.0
+        with:
+          godot_version: 3.4.4
+          unit_test: "res://test"
